@@ -8,14 +8,14 @@ namespace Orders.Backend.Controllers
 {
     [ApiController]
     [Route("api/[controller]")] 
-    public class CountriesController(IGenericUnitOfWork<Country> unitOfWork, ICountriesUnitOfWork countriesUnitOfWork) : GenericController<Country>(unitOfWork)
+    public class StatesController(IGenericUnitOfWork<State> unitOfWork, IStatesUnitOfWork statesUnitOfWork) : GenericController<State>(unitOfWork)
     {
-        private readonly ICountriesUnitOfWork _countriesUnitOfWork = countriesUnitOfWork;
+        private readonly IStatesUnitOfWork _statesUnitOfWork = statesUnitOfWork;
 
         [HttpGet]
         public override async Task<IActionResult> GetAsync()
         {
-            var action = await _countriesUnitOfWork.GetAsync();
+            var action = await _statesUnitOfWork.GetAsync();
             if (action.WasSuccess)
             {
                 return Ok(action.Result);
@@ -26,7 +26,7 @@ namespace Orders.Backend.Controllers
         [HttpGet("{id}")]
         public override async Task<IActionResult> GetAsync(int id)
         {
-            var action = await _countriesUnitOfWork.GetAsync(id);
+            var action = await _statesUnitOfWork.GetAsync(id);
             if (action.WasSuccess)
             {
                 return Ok(action.Result);
